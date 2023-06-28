@@ -12,8 +12,8 @@ const typography: TypographyProps = {
     color: "pink"
   },
   subtitle: {
-    fontSize: 14,
-    fontWeight: "400",
+    fontSize: 16,
+    fontWeight: "500",
   },
   technicalText: {
     fontSize: 12,

@@ -7,6 +7,9 @@ import Register from "../../screens/Register";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RootStackParamList } from "../navigator.types";
 import { useThemeConsumer } from "../../utils/theme/theme.consumer";
+import Home from "../../screens/Home";
+import Settings from "../../screens/Settings";
+import Ideas from "../../screens/Ideas";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -26,6 +29,8 @@ export const Dashboard = () => {
             iconName = focused ? "ios-home" : "ios-home-outline";
           } else if (route.name === "Settings") {
             iconName = focused ? "settings" : "settings-outline";
+          } else if (route.name === "Ideas") {
+            iconName = focused ? "bulb-sharp" : "bulb-outline";
           }
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -34,8 +39,10 @@ export const Dashboard = () => {
         tabBarInactiveTintColor: secondary,
       })}
     >
-      <Tab.Screen name="Register" component={Register} />
-      <Tab.Screen name="Login" component={Login} />
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen name="Ideas" component={Ideas} />
+
     </Tab.Navigator>
   );
 };

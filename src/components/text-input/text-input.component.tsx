@@ -53,10 +53,11 @@ export const TextInput = ({
 const styles = (colors: ThemeColors) =>
   StyleSheet.create({
     container: {
-      borderWidth: 1,
+      // borderWidth: 1,
       borderRadius: 10,
       paddingVertical: 10,
       color: colors.text,
+      backgroundColor: colors.inputBackground,
       paddingHorizontal: 20,
       borderColor: colors.text,
       marginTop: spacing(2),

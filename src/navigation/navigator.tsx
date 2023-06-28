@@ -1,14 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { Appearance } from "react-native";
-// import { useAuthentication } from "../hooks/useAuthentication";
 import { useThemeConsumer } from "../utils/theme/theme.consumer";
 import { Authentication } from "./authentication";
 import { Dashboard } from "./dashboard";
+import { useAuthentication } from "../hooks/useAuthentication";
 
 export const Navigator = () => {
   const { activeScheme, toggleThemeSchema, theme } = useThemeConsumer();
-//   const { user } = useAuthentication();
+  const { user } = useAuthentication();
 
   Appearance.addChangeListener((scheme) => {
     if (scheme.colorScheme !== activeScheme) {
@@ -18,8 +18,7 @@ export const Navigator = () => {
 
   return (
     <NavigationContainer theme={theme}>
-        <Dashboard/>
-      {/* {user ? <Dashboard /> : <Authentication />} */}
+      {user ? <Dashboard /> : <Authentication />}
     </NavigationContainer>
   );
 };
