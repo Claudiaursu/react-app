@@ -4,7 +4,7 @@ import { useThemeConsumer } from "../../../utils/theme/theme.consumer";
 import { TextInput } from "../../../components/text-input";
 import { Text, Button } from '../../../components';
 import { addDoc, collection, doc, getDoc, getDocs } from 'firebase/firestore';
-import { auth, firestore } from "../../../utils/firebase";
+import { basicAuth, firestore } from "../../../utils/firebase";
 import { StyleSheet } from "react-native";
 
 export const AddCollectionModal = ( {isVisible}: any, {onClose}: any) => {
@@ -21,7 +21,7 @@ export const AddCollectionModal = ( {isVisible}: any, {onClose}: any) => {
   const handleFormSubmit = async () => {
     const colRef = collection(firestore, "collections");
     await addDoc(colRef, {
-        userId: auth.currentUser?.uid,
+        userId: basicAuth.currentUser?.uid,
         title: titleValue,
         descriptiom: descriptionValue,
         createdAt: Math.floor(new Date().getTime()/1000)

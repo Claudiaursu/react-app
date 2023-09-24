@@ -6,7 +6,7 @@ import { RootStackParamList } from "../../navigation/navigator.types";
 import { useThemeConsumer } from "../../utils/theme/theme.consumer";
 import { Text, Button } from '../../components';
 import { TextInput } from "../../components/text-input";
-import { auth, firestore } from "../../utils/firebase";
+import { basicAuth, firestore } from "../../utils/firebase";
 import { collection, doc, addDoc, getDocs } from 'firebase/firestore';
 import { ICollection } from "../../interfaces/collection";
 import { Collection } from "../../components";
@@ -49,10 +49,10 @@ const Home = ({ navigation }: HomeProps) => {
     const colRef = collection(firestore, "collections");
     await addDoc(colRef, {
         id: uuid.v1().toString(),
-        userId: auth.currentUser?.uid,
+        userId: basicAuth.currentUser?.uid,
         title: titleValue,
-        descriptiom: descriptionValue,
-        createdAt: Math.floor(new Date().getTime()/1000)
+        description: descriptionValue,
+        createdAt: new Date()
     })
     await getCollections();
     setIsVisible(false);
@@ -63,15 +63,18 @@ const Home = ({ navigation }: HomeProps) => {
         const colRef = collection(firestore, "collections");
         const collections = await getDocs(colRef);
         let collectionArray: ICollection[] = [];
-        collections.forEach(col =>{
+        collections.forEach(col => {
             const collectionData = col.data();
-            collectionArray.push({
+            
+            if(collectionData.userId === basicAuth.currentUser?.uid){
+              collectionArray.push({
                 id: collectionData.id,
                 userId: collectionData.userId,
                 title: collectionData.title,
                 description: collectionData.description,
                 createdAt: collectionData.createdAt.seconds * 1000
-            });
+              });
+            }
         })
         setCollections(collectionArray);
     }
@@ -92,7 +95,7 @@ const Home = ({ navigation }: HomeProps) => {
             {margin: 18,
                 textAlign: 'center'  
             }} 
-            variant = "title">Hello, {auth.currentUser?.email}! 
+            variant = "title">Hello, {basicAuth.currentUser?.email}! 
         </Text>
 
         <Text   

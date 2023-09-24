@@ -13,6 +13,14 @@ export default {
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    plugins:[
+        [
+          "expo-image-picker",
+          {
+            "photosPermission": "The app accesses your photos to let you share them with your friends."
+          }
+        ]
+    ],
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -35,6 +43,7 @@ export default {
       storageBucket: process.env.STORAGE_BUCKET,
       messagingSenderId: process.env.MESSAGING_SENDER_ID,
       appId: process.env.APP_ID,
+      webClientID: process.env.WEB_CLIENT_ID
     }
   },
 }

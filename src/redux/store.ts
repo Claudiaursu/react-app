@@ -1,10 +1,12 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import counterReducer from "./counter.slice";
+import profilePhotoReducer from "./profilePhoto.slice";
 import { ideasSlice } from "./ideas.service";
 
 export const store = configureStore({
   reducer: { 
     counterReducer, 
+    profilePhotoReducer,
     [ideasSlice.reducerPath]: ideasSlice.reducer 
   },
   middleware: (getDefaultMiddleware) =>

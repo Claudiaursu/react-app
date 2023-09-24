@@ -8,8 +8,10 @@ import loginStyles from "./login.styles";
 import { Text, Button } from '../../components';
 import { TextInput } from "../../components/text-input";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../utils/firebase";
+import { basicAuth } from "../../utils/firebase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
@@ -30,7 +32,7 @@ const Login = ({ navigation }: LoginProps) => {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(
-        auth,
+        basicAuth,
         loginForm.email,
         loginForm.password
       );
@@ -42,6 +44,19 @@ const Login = ({ navigation }: LoginProps) => {
   };
 
   const styles = loginStyles(colors);
+
+  const onGoogleButtonPress = async () => {
+  //   // Check if your device supports Google Play
+  //   await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+  //   // Get the users ID token
+  //   const { idToken } = await GoogleSignin.signIn();
+
+  //   // Create a Google credential with the token
+  //   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  //   // Sign-in the user with the credential
+  //   return auth().signInWithCredential(googleCredential);
+  }
 
   return (
     <SafeAreaView style={styles.authContainer}>
@@ -91,7 +106,9 @@ const Login = ({ navigation }: LoginProps) => {
       <View style={styles.logoOuterContainer}>
         <View style={styles.logoContainer}>
           <Ionicons name="logo-facebook" size={30} />
-          <Ionicons name="logo-google" size={30} />
+          <Ionicons name="logo-google" size={30} 
+            onPress={() => onGoogleButtonPress}
+          />
           <Ionicons name="logo-apple" size={30} />
         </View>
       </View>

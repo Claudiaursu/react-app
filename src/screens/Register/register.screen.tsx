@@ -5,7 +5,7 @@ import { SafeAreaView, View } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Button, Text } from "../../components";
 import { TextInput } from "../../components/text-input";
-import { auth } from "../../utils/firebase";
+import { basicAuth } from "../../utils/firebase";
 import { RootStackParamList } from "../../navigation/navigator.types";
 import { useThemeConsumer } from "../../utils/theme/theme.consumer";
 import registerStyles from "./register.styles";
@@ -35,7 +35,7 @@ const Register = ({ navigation }: RegisterProps) => {
     try {
         console.log("Credentiale: ", registerForm.email + " " + registerForm.password);
       await createUserWithEmailAndPassword(
-        auth,
+        basicAuth,
         registerForm.email,
         registerForm.password
       );

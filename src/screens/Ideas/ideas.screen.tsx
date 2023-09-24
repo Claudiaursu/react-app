@@ -6,7 +6,7 @@ import { RootStackParamList } from "../../navigation/navigator.types";
 import { useThemeConsumer } from "../../utils/theme/theme.consumer";
 import { Text, Button } from '../../components';
 import { TextInput } from "../../components/text-input";
-import { auth, firestore } from "../../utils/firebase";
+import { basicAuth, firestore } from "../../utils/firebase";
 import { View, Modal } from 'react-native';
 import { StyleSheet } from "react-native";
 import { AddCollectionModal } from "../../components/modals/addCollectionModal";
@@ -45,7 +45,7 @@ const Ideas = () => {
             {margin: 18,
                 textAlign: 'center'  
             }} 
-            variant = "title">Hello, {auth.currentUser?.email}! 
+            variant = "title">Hello, {basicAuth.currentUser?.email}! 
         </Text>
 
         <Text   
